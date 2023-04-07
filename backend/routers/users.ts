@@ -1,5 +1,5 @@
 import { Context } from "../utils/context";
-import { createUser, getAllUsers } from "../apis/users";
+import { createUser, getAllUsers, getUserById } from "../apis/users";
 import { initTRPC } from "@trpc/server";
 import { z } from "zod";
 
@@ -11,7 +11,13 @@ export const userRouter = t.router({
     return { msg: "pong" };
   }),
 
-  users: publicProcedure.query(async () => {
+  getUserById: publicProcedure.input(z.number()).query(async (req) => {
+    const { input } = req;
+    const user = await getUserById(input);
+    return user;
+  }),
+
+  getUsers: publicProcedure.query(async () => {
     const users = await getAllUsers();
     return users;
   }),
@@ -25,6 +31,7 @@ export const userRouter = t.router({
     )
     .output(
       z.object({
+        id: z.number(),
         name: z.string(),
       })
     )
