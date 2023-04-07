@@ -1,0 +1,26 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.ts",
+    "migrate:init": "prisma init --datasource-provider sqlite",
+    "migrate": "prisma migrate dev --name init",
+    "migrate:reset": "prisma migrate reset"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@tanstack/react-query": "^4.28.0",
+    "@trpc/client": "^10.19.1",
+    "@trpc/react-query": "^10.19.1",
+    "@trpc/server": "^10.19.1",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "nodemon": "^2.0.22",
+    "prisma": "^4.12.0"
+  }
+}
