@@ -17,10 +17,12 @@ export const userRouter = t.router({
     return user;
   }),
 
-  getUsers: publicProcedure.query(async () => {
-    const users = await getAllUsers();
-    return users;
-  }),
+  getUsers: publicProcedure
+    .output(z.array(z.object({ id: z.number(), name: z.string() })))
+    .query(async () => {
+      const users = await getAllUsers();
+      return users;
+    }),
 
   createUser: publicProcedure
     .input(
