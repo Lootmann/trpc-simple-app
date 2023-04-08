@@ -1,5 +1,4 @@
 import { publicProcedure, router } from "../trpc";
-import { setToken } from "../apis/auths";
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 import {
@@ -55,7 +54,6 @@ export const userRouter = router({
             message: "username or password is invalid",
           });
 
-        setToken(user.name);
         return { msg: "success", name: user.name };
       }),
 
