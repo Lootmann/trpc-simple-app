@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 
 export function Header() {
@@ -11,6 +10,20 @@ export function Header() {
         className="hover:bg-slate-300 hover:text-zinc-900 px-2 rounded-md"
       >
         Top
+      </Link>
+
+      <Link
+        to={`/auth/login`}
+        className="hover:bg-slate-300 hover:text-zinc-900 px-2 rounded-md"
+      >
+        Login
+      </Link>
+
+      <Link
+        to={`/auth/signup`}
+        className="hover:bg-slate-300 hover:text-zinc-900 px-2 rounded-md"
+      >
+        Signup
       </Link>
 
       <Link
