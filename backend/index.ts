@@ -16,6 +16,7 @@ app.use(cors());
 
 // marging router and set these to express
 const appRouter = mainRouter(testRouter, userRouter);
+export type AppRouter = typeof appRouter;
 
 app.use(
   "/trpc",
