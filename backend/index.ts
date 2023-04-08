@@ -2,6 +2,8 @@ import * as trpcExpress from "@trpc/server/adapters/express";
 import cors from "cors";
 import express from "express";
 import { createContext } from "./utils/context";
+import { mainRouter } from "./trpc";
+import { testRouter } from "./routers/hoge";
 import { userRouter } from "./routers/users";
 
 // express settings
@@ -12,11 +14,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
-// tRPC settings
+// marging router and set these to express
+const appRouter = mainRouter(testRouter, userRouter);
+
 app.use(
   "/trpc",
   trpcExpress.createExpressMiddleware({
-    router: userRouter,
+    router: appRouter,
     createContext,
   })
 );

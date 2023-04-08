@@ -1,19 +1,18 @@
-import { Context } from "../utils/context";
 import { createUser, getAllUsers, getUserById } from "../apis/users";
-import { initTRPC } from "@trpc/server";
+import { publicProcedure, router } from "../trpc";
 import { z } from "zod";
 
-const t = initTRPC.context<Context>().create();
-const publicProcedure = t.procedure;
-
-export const userRouter = t.router({
-  ping: publicProcedure.query(async () => {
-    return { msg: "pong" };
-  }),
-
-  user: t.router({
+export const userRouter = router({
+  user: router({
     all: publicProcedure
-      .output(z.array(z.object({ id: z.number(), name: z.string() })))
+      .output(
+        z.array(
+          z.object({
+            id: z.number(),
+            name: z.string(),
+          })
+        )
+      )
       .query(async () => {
         const users = await getAllUsers();
         return users;
@@ -43,5 +42,3 @@ export const userRouter = t.router({
       }),
   }),
 });
-
-export type UserRouter = typeof userRouter;
