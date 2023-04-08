@@ -43,3 +43,8 @@ Prisma のテストなど云々
   - title
   - content
   - userId @relation
+
+## TODO
+
+- header with authentications
+  - https://trpc.io/docs/server/authorization
