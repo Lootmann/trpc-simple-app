@@ -8,9 +8,12 @@ type TUserForm = {
 
 export function InputForm() {
   const utils = trpc.useContext();
-  const userMutation = trpc.createUser.useMutation({
+  const userMutation = trpc.user.create.useMutation({
     onSuccess: () => {
-      utils.getUsers.invalidate();
+      utils.user.all.invalidate();
+    },
+    onError: (error) => {
+      console.log(error);
     },
   });
 

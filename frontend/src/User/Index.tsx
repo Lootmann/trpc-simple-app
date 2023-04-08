@@ -2,7 +2,7 @@ import { InputForm } from "./InputForm";
 import { trpc } from "../trpc";
 
 export function Index() {
-  const users = trpc.getUsers.useQuery();
+  const users = trpc.user.all.useQuery();
 
   return (
     <div className="flex flex-col gap-4">
