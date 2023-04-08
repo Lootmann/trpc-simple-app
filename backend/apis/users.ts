@@ -20,6 +20,15 @@ export const getUserByName = async (username: string) => {
   });
 };
 
+export const getUserByPassword = async (username: string, password: string) => {
+  return prisma.user.findFirst({
+    where: {
+      name: username,
+      password: password,
+    },
+  });
+};
+
 export const createUser = async (name: string, password: string) => {
   return prisma.user.create({
     data: {

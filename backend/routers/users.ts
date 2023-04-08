@@ -1,10 +1,13 @@
 import { publicProcedure, router } from "../trpc";
+import { setToken } from "../apis/auths";
+import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 import {
   createUser,
   getAllUsers,
   getUserById,
   getUserByName,
+  getUserByPassword,
 } from "../apis/users";
 
 export const userRouter = router({
@@ -34,6 +37,27 @@ export const userRouter = router({
       const user = await getUserByName(input);
       return user;
     }),
+
+    login: publicProcedure
+      .input(
+        z.object({
+          name: z.string().min(3, "short name"),
+          password: z.string().min(3, "short name"),
+        })
+      )
+      .output(z.object({ msg: z.string(), name: z.string() }))
+      .mutation(async ({ input }) => {
+        const user = await getUserByPassword(input.name, input.password);
+
+        if (user === null)
+          throw new TRPCError({
+            code: "BAD_REQUEST",
+            message: "username or password is invalid",
+          });
+
+        setToken(user.name);
+        return { msg: "success", name: user.name };
+      }),
 
     create: publicProcedure
       .input(
