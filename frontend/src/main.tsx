@@ -4,6 +4,8 @@ import { App } from "./App";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Index as UserIndex } from "./User/Index";
 import { Index as TopIndex } from "./Top/Index";
+import { Login } from "./Auth/Login";
+import { Signup } from "./Auth/Signup";
 import "./styles/index.css";
 
 const router = createBrowserRouter([
@@ -14,6 +16,20 @@ const router = createBrowserRouter([
       {
         path: "/app",
         element: <TopIndex />,
+      },
+    ],
+  },
+  {
+    path: "/",
+    element: <App />,
+    children: [
+      {
+        path: "/auth/login",
+        element: <Login />,
+      },
+      {
+        path: "/auth/signup",
+        element: <Signup />,
       },
     ],
   },
