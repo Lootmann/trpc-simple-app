@@ -12,6 +12,14 @@ export const getUserById = async (userId: number) => {
   });
 };
 
+export const getUserByName = async (username: string) => {
+  return prisma.user.findFirst({
+    where: {
+      name: username,
+    },
+  });
+};
+
 export const createUser = async (name: string, password: string) => {
   return prisma.user.create({
     data: {

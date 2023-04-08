@@ -1,6 +1,11 @@
-import { createUser, getAllUsers, getUserById } from "../apis/users";
 import { publicProcedure, router } from "../trpc";
 import { z } from "zod";
+import {
+  createUser,
+  getAllUsers,
+  getUserById,
+  getUserByName,
+} from "../apis/users";
 
 export const userRouter = router({
   user: router({
@@ -21,6 +26,12 @@ export const userRouter = router({
     byId: publicProcedure.input(z.number()).query(async (req) => {
       const { input } = req;
       const user = await getUserById(input);
+      return user;
+    }),
+
+    byName: publicProcedure.input(z.string()).query(async (req) => {
+      const { input } = req;
+      const user = await getUserByName(input);
       return user;
     }),
 
