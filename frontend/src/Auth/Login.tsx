@@ -1,3 +1,4 @@
+import { setToken } from "../apis/tokens";
 import { trpc } from "../trpc";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -27,6 +28,7 @@ export function Login() {
       },
       {
         onSuccess: () => {
+          setToken(form.name);
           navigate("/users");
         },
         onError: (error) => {
@@ -47,10 +49,10 @@ export function Login() {
 
         <form
           method="post"
-          className="flex flex-col gap-4"
+          className="flex flex-col"
           onSubmit={(e) => onSubmit(e)}
         >
-          <p>
+          <div className="w-1/2 flex flex-col gap-4">
             <input
               type="text"
               name="name"
@@ -60,9 +62,6 @@ export function Login() {
               onChange={(e) => onChange(e)}
               autoFocus
             />
-          </p>
-
-          <p>
             <input
               type="password"
               name="password"
@@ -71,11 +70,14 @@ export function Login() {
               value={form.password}
               onChange={(e) => onChange(e)}
             />
-          </p>
 
-          <p>
-            <button type="submit">Login</button>
-          </p>
+            <button
+              type="submit"
+              className="bg-zinc-900 rounded-md hover:bg-green-800 focus:bg-green-800 transition-all duration-200"
+            >
+              Login
+            </button>
+          </div>
         </form>
       </div>
     </div>
