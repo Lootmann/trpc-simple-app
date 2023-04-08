@@ -7,7 +7,7 @@ export function Header() {
       <h1>tRPC React</h1>
 
       <Link
-        to={`/`}
+        to={`/app`}
         className="hover:bg-slate-300 hover:text-zinc-900 px-2 rounded-md"
       >
         Top
