@@ -1,15 +1,26 @@
+import { InputForm } from "./InputForm";
 import { trpc } from "../trpc";
 
 export function Index() {
   const users = trpc.getUsers.useQuery();
 
   return (
-    <div>
-      {users.data?.map((user) => (
-        <p>
-          {user.id}.{user.name}
-        </p>
-      ))}
+    <div className="flex flex-col gap-4">
+      <header>
+        <h2>All Users</h2>
+      </header>
+
+      <div className="border p-4">
+        {users.data?.map((user) => (
+          <p key={user.id}>
+            {user.id}.{user.name}
+          </p>
+        ))}
+      </div>
+
+      <div className="border p-4">
+        <InputForm />
+      </div>
     </div>
   );
 }
