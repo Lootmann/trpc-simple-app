@@ -1,4 +1,4 @@
-import { protectedProceduer, publicProcedure, router } from "../trpc";
+import { protectedProcedure, publicProcedure, router } from "../trpc";
 
 export const testRouter = router({
   ping: publicProcedure.query(async () => {
@@ -6,8 +6,9 @@ export const testRouter = router({
   }),
 
   admin: router({
-    pong: protectedProceduer.query(({ ctx }) => {
-      return { secret: ctx.user };
+    // NOTE: when needs Authorization, use protectedProcedure
+    pong: protectedProcedure.query(({ ctx }) => {
+      return { auth: ctx.user };
     }),
   }),
 });

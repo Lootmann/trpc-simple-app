@@ -1,12 +1,19 @@
 import { CreateExpressContextOptions } from "@trpc/server/adapters/express";
+import { getUserByName } from "../apis/users";
 import { inferAsyncReturnType } from "@trpc/server";
 
 export async function createContext({ req, res }: CreateExpressContextOptions) {
-  // TODO: user authentications
   async function getUserFromHeader() {
-    return { id: 1, name: "hoge", token: "hogehoge" };
+    if (req.headers.authorization) {
+      const username = req.headers.authorization;
+      const user = getUserByName(username);
+      return user;
+    }
+    return null;
   }
 
+  // NOTE: when Authorization header is valid, returns username
+  // NOTE: when not, returns null
   const user = await getUserFromHeader();
   return { req, res, user };
 }

@@ -8,7 +8,6 @@ export const middleware = t.middleware;
 export const publicProcedure = t.procedure;
 export const mainRouter = t.mergeRouters;
 
-// TODO: Authorize using middleware
 const isAuthed = middleware(({ next, ctx }) => {
   if (!ctx.user) {
     throw new TRPCError({ code: "UNAUTHORIZED" });
@@ -21,4 +20,4 @@ const isAuthed = middleware(({ next, ctx }) => {
   });
 });
 
-export const protectedProceduer = t.procedure.use(isAuthed);
+export const protectedProcedure = t.procedure.use(isAuthed);
