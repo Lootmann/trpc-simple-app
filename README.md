@@ -48,3 +48,6 @@ Prisma のテストなど云々
 
 - header with authentications
   - https://trpc.io/docs/server/authorization
+  - 1. Frontend:Header Login -> set token
+  - 2. Backend:Context, Router -> get `{ authorization: <token> }`
+  - 3. Backend:Context -> validate token -> useAuth :^)
