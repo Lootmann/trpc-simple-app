@@ -1,8 +1,8 @@
 import * as trpcExpress from "@trpc/server/adapters/express";
 import cors from "cors";
 import express from "express";
+import { authRouter, router } from "./trpc";
 import { createContext } from "./utils/context";
-import { mainRouter } from "./trpc";
 import { testRouter } from "./routers/hoge";
 import { userRouter } from "./routers/users";
 
@@ -15,7 +15,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 // marging router and set these to express
-const appRouter = mainRouter(testRouter, userRouter);
+// TODO: add auth router
+const appRouter = router({
+  user: userRouter,
+  test: testRouter,
+});
 export type AppRouter = typeof appRouter;
 
 app.use(
