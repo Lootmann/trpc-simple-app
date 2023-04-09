@@ -1,10 +1,10 @@
-//  keep token in memory
+// TODO: Do not use localStorage
 export let accessToken: string | null;
 
 export const setToken = (username: string) => {
-  accessToken = username;
+  localStorage.setItem("accessToken", username);
 };
 
 export const getToken = (): string | null => {
-  return accessToken;
+  return localStorage.getItem("accessToken");
 };
