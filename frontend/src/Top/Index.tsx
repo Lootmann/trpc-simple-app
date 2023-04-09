@@ -1,7 +1,7 @@
 import { trpc } from "../trpc";
 
 export function Index() {
-  const { data } = trpc.ping.useQuery();
+  const { data } = trpc.test.ping.useQuery();
 
   return (
     <div className="text-xl">
