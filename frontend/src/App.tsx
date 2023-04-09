@@ -15,8 +15,8 @@ export function App() {
         httpBatchLink({
           url: "http://localhost:3000/trpc",
           headers() {
-            const token = getToken() || "";
-            return { Authorization: token };
+            const token = getToken();
+            return { Authorization: `Bearer ${token}` };
           },
         }),
       ],

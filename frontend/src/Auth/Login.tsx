@@ -22,8 +22,8 @@ export function Login() {
         password: form.password,
       },
       {
-        onSuccess: () => {
-          setToken(form.name);
+        onSuccess: ({ accessToken }) => {
+          setToken(accessToken);
           navigate("/users");
         },
         onError: (error) => {
