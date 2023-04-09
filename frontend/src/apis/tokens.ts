@@ -1,9 +1,10 @@
-const LOCALSTORAGE_KEY = "hogeUserName";
+//  keep token in memory
+export let accessToken: string | null;
 
 export const setToken = (username: string) => {
-  localStorage.setItem(LOCALSTORAGE_KEY, username);
+  accessToken = username;
 };
 
 export const getToken = (): string | null => {
-  return localStorage.getItem(LOCALSTORAGE_KEY);
+  return accessToken;
 };

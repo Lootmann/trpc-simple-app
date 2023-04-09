@@ -45,7 +45,7 @@ export const userRouter = router({
     )
     .output(z.object({ accessToken: z.string() }))
     .mutation(async ({ input }) => {
-      // NOTE: when user have success logged in, return 'fake' accessToken
+      // when user have success logged in, return 'fake' accessToken
       const user = await getUserByPassword(input.name, input.password);
 
       if (user === null)
@@ -54,6 +54,7 @@ export const userRouter = router({
           message: "username or password is invalid",
         });
 
+      // TODO: change accessToken using JWT
       return { accessToken: user.name };
     }),
 

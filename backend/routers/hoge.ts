@@ -6,7 +6,7 @@ export const testRouter = router({
   }),
 
   admin: router({
-    // NOTE: when needs Authorization, use protectedProcedure
+    // when needs Authorization, use protectedProcedure
     pong: protectedProcedure.query(({ ctx }) => {
       return { auth: ctx.user };
     }),
