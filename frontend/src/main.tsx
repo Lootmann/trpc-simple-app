@@ -6,7 +6,6 @@ import { Index as UserIndex } from "./User/Index";
 import { Index as TopIndex } from "./Top/Index";
 import { Login } from "./Auth/Login";
 import { Signup } from "./Auth/Signup";
-import { Test } from "./Auth/Test";
 import "./styles/index.css";
 
 const router = createBrowserRouter([
@@ -31,10 +30,6 @@ const router = createBrowserRouter([
       {
         path: "/auth/signup",
         element: <Signup />,
-      },
-      {
-        path: "/auth/test",
-        element: <Test />,
       },
     ],
   },
