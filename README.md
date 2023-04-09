@@ -23,6 +23,12 @@ Prisma のテストなど云々
   - `POST /login` (with faketoken)
   - `POST /signup` (with faketoken)
   - `GET  /me` (profile?)
+- /users
+  - `GET   /`
+  - `GET   /:userId`
+  - `POST  /`
+  - `PATCH /`
+  - `DEL   /`
 - /posts
   - `GET   /`
   - `POST  /`
@@ -56,3 +62,7 @@ Prisma のテストなど云々
   - [ ] 2. store in memory
   - [ ] 3. needs both accessToken and refreshToken, refreshToken should be in Cookies
   - [ ] 4. create new api named `/auth/refresh`, and overwrite accesstoken expired
+- [ ] Templatize?
+  - And Dockernize?
+- [ ] Dockernize?
+  - Docker Composetize?
