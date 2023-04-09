@@ -1,3 +1,4 @@
+import { getToken } from "./apis/tokens";
 import { Header } from "./components/Header";
 import { httpBatchLink } from "@trpc/client";
 import { Outlet } from "react-router-dom";
@@ -13,6 +14,10 @@ export function App() {
       links: [
         httpBatchLink({
           url: "http://localhost:3000/trpc",
+          headers() {
+            const token = getToken() || "";
+            return { Authorization: token };
+          },
         }),
       ],
     })
