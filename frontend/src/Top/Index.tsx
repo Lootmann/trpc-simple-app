@@ -1,15 +1,27 @@
 import { trpc } from "../trpc";
 
-// TODO: add authentications
 export function Index() {
   const { data } = trpc.test.ping.useQuery();
+  const pong = trpc.test.admin.pong.useQuery();
 
   return (
     <div className="text-xl">
       <h2 className="text-2xl">TopIndex</h2>
 
-      <div className="flex flex-col gap-4 text-2xl">
+      <hr className="my-4" />
+
+      <div className="flex flex-col gap-6 text-2xl">
         <p>Server is running ...?</p>
+
+        {pong.data ? (
+          <p>
+            <span className="bg-yellow-600 text-black p-2 rounded-md">
+              Login As {pong.data.auth.name}
+            </span>
+          </p>
+        ) : (
+          <p>Not Logged In D:</p>
+        )}
 
         {data ? (
           <p>
