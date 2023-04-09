@@ -3,11 +3,6 @@ import { trpc } from "../trpc";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-type TUser = {
-  name: string;
-  password: string;
-};
-
 export function Login() {
   const [form, setForm] = useState<TUser>({ name: "", password: "" });
   const loginMutation = trpc.user.login.useMutation();
