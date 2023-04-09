@@ -1,5 +1,6 @@
 import { trpc } from "../trpc";
 
+// TODO: add authentications
 export function Index() {
   const { data } = trpc.test.ping.useQuery();
 
