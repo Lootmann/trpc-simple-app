@@ -27,13 +27,6 @@ export function Header() {
       </Link>
 
       <Link
-        to={`auth/test`}
-        className="hover:bg-slate-300 hover:text-zinc-900 px-2 rounded-md"
-      >
-        AuthTest
-      </Link>
-
-      <Link
         to={`/users`}
         className="hover:bg-slate-300 hover:text-zinc-900 px-2 rounded-md"
       >
